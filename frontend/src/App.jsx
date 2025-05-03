@@ -67,8 +67,7 @@ function App() {
             }
           />
           <Route path='/verify-email' element={<EmailVerificationPage />} />
-          {/* <Route path='/' element={<Signup />} />
-          <Route path='/login' element={<Login />} /> */}
+
           <Route path='*' element={<Notfound />} />
         </Routes>
       </div>
