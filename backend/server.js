@@ -1,10 +1,10 @@
 const express = require('express')
 const connectDB = require('./config/db')
-require('dotenv').config()
 const authRouter = require('./routes/authRoute')
 const cors = require('cors')
 const path = require('path')
 const cookieParser = require('cookie-parser')
+require('dotenv').config()
 
 const app = express()
 const PORT = process.env.PORT || 5000
@@ -30,6 +30,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.listen(PORT, () => {
-  console.log(`Server started at http://localhost:${PORT}`)
+  console.log(`Server is running on port:${PORT}`)
   connectDB()
 })
