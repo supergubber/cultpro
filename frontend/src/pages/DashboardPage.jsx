@@ -90,7 +90,7 @@ const DashboardPage = () => {
       <div className='w-11/12 min-h-screen bg-gray-100 mx-auto relative'>
         <div className='sticky bg-white w-full top-0 left-0 p-4 h-fit overflow-hidden shadow-lg shadow-gray-400'>
           <div className='flex flex-row items-center justify-between flex-wrap'>
-            <div className='flex flex-row items-center justify-evenly gap-8 flex-wrap'>
+            <div className='flex flex-row items-center justify-evenly gap-8 flex-wrap text-2xl'>
               {`${user.firstName.charAt(0).toUpperCase()}${user.firstName.slice(
                 1
               )} ${user.lastName.charAt(0).toUpperCase()}${user.lastName.slice(
