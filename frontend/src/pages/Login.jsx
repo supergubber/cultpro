@@ -29,7 +29,7 @@ const Login = () => {
   }
   return (
     <Container maxWidth='lg'>
-      <Grid container sx={{ height: '100%' }}>
+      <Grid container sx={{ height: '100%' }} className='w-fit'>
         <Grid
           size={{ xs: 12, sm: 6 }}
           sx={{
