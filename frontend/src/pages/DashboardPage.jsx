@@ -77,16 +77,16 @@ const DashboardPage = () => {
   return (
     <div className='max-w-screen min-h-screen mx-auto bg-gray-100'>
       <div className='w-11/12 min-h-screen bg-gray-100 mx-auto relative'>
-        <div className='sticky bg-white w-full top-0 left-0 p-4 h-fit overflow-hidden'>
+        <div className='sticky bg-white w-full top-0 left-0 p-4 h-fit overflow-hidden shadow-lg shadow-gray-400'>
           <div className='flex flex-row items-end justify-between flex-wrap'>
             <form
               className='flex flex-row gap-6 items-center flex-wrap'
               onSubmit={handleSubmit}
             >
               <div className='flex flex-col gap-2 w-fit'>
-                <label htmlFor='title' className='font-bold text-xl'>
+                {/* <label htmlFor='title' className='font-bold text-xl'>
                   Title<sup>*</sup>
-                </label>
+                </label> */}
                 <input
                   type='text'
                   id='title'
@@ -98,9 +98,9 @@ const DashboardPage = () => {
                 />
               </div>
               <div className='flex flex-col gap-2 w-fit'>
-                <label htmlFor='description' className='font-bold text-xl'>
+                {/* <label htmlFor='description' className='font-bold text-xl'>
                   Description<sup>*</sup>
-                </label>
+                </label> */}
                 <input
                   type='text'
                   id='description'
@@ -111,8 +111,8 @@ const DashboardPage = () => {
                   onChange={handleChange}
                 />
               </div>
-              <div className='mt-6'>
-                <button className='px-4 py-3 font-bold text-white rounded-lg shadow-lg bg-blue-500 cursor-pointer hover:scale-95'>
+              <div className=''>
+                <button className='px-3 py-2 font-bold text-white rounded-lg shadow-lg bg-blue-500 cursor-pointer hover:scale-95'>
                   Submit
                 </button>
               </div>
@@ -122,9 +122,11 @@ const DashboardPage = () => {
               <Avatar
                 alt='Remy Sharp'
                 src='https://mui.com/static/images/avatar/3.jpg'
+                className='shadow-lg shadow-amber-100'
               />
               <CiLogout
-                className='cursor-pointer text-4xl'
+                className='cursor-pointer text-3xl'
+                title='logout'
                 onClick={handleLogout}
               />
             </div>
