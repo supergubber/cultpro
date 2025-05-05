@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { CiLogout } from 'react-icons/ci'
 import Avatar from '@mui/material/Avatar'
 import { useAuthStore } from '../store/authStore'
@@ -22,6 +22,8 @@ const DashboardPage = () => {
   const [editMode, setEditMode] = useState(false)
   const [editId, setEditId] = useState(null)
   const [popup, setPopup] = useState(false)
+  const [searchData, setSearchData] = useState('')
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -80,11 +82,18 @@ const DashboardPage = () => {
       console.error('Logout error:', err)
     }
   }
+
   const modalClose = () => {
     setPopup(!popup)
     setDataValue({ title: '', description: '' })
     setEditMode(false)
   }
+  const filteredTodos = useMemo(() => {
+    if (!searchData) return todos
+    const searchTerm = searchData.toLowerCase()
+    return todos.filter((todo) => todo.title.toLowerCase().includes(searchTerm))
+  }, [todos, searchData])
+
   return (
     <div className='max-w-screen min-h-screen mx-auto bg-gray-100'>
       <div className='w-11/12 min-h-screen bg-gray-100 mx-auto relative'>
@@ -98,6 +107,15 @@ const DashboardPage = () => {
               )}`}
             </div>
             <div className='flex flex-row gap-8 flex-wrap items-center'>
+              <input
+                type='text'
+                id='search'
+                name='search'
+                value={searchData}
+                placeholder='Search'
+                className='border border-black px-3 py-2 rounded-sm text-black'
+                onChange={(e) => setSearchData(e.target.value)}
+              />
               <Avatar
                 alt='Remy Sharp'
                 title={`${user?.firstName || 'User'}${user?.lastName || ''}`}
@@ -119,9 +137,10 @@ const DashboardPage = () => {
             </div>
           </div>
         </div>
+
         <div className='mt-10 px-4'>
           <Grid container spacing={3}>
-            {todos?.map((item) => (
+            {filteredTodos?.map((item) => (
               <Grid
                 size={{ xs: 12, sm: 6, md: 3 }}
                 md={3}
@@ -156,14 +175,14 @@ const DashboardPage = () => {
         </div>
       </div>
       <div
-        className={`absolute w-screen h-screen top-0 left-0 bg-gray-300 opacity-75 z-50 ${
+        className={`absolute w-screen h-screen top-0 left-0 bg-[rgba(0,0,0,0.36)] z-50 ${
           popup
             ? 'inline animate__animated animate__zoomIn'
             : 'animate__animated animate__zoomOut hidden'
         }`}
       >
         <IoMdClose
-          className='absolute right-10 top-10 text-4xl cursor-pointer'
+          className='absolute right-10 top-10 text-4xl cursor-pointer text-white'
           onClick={modalClose}
         />
         <div className='bg-gray-100 shadow-2xl shadow-black p-4 w-4/12 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
@@ -184,7 +203,7 @@ const DashboardPage = () => {
                 id='title'
                 name='title'
                 placeholder='Title'
-                className='border border-black px-3 py-2 rounded-sm text-black'
+                className='border border-gray-400 px-3 py-2 rounded-sm text-black'
                 value={dataValue.title}
                 onChange={handleChange}
               />
@@ -199,13 +218,13 @@ const DashboardPage = () => {
                 name='description'
                 placeholder='Description'
                 value={dataValue.description}
-                className='border border-black px-3 py-2 rounded-sm text-black'
+                className='border border-gray-400 px-3 py-2 rounded-sm text-black'
                 onChange={handleChange}
               />
             </div>
             <div className=''>
               <button className='px-3 py-2 font-bold text-white rounded-lg shadow-lg bg-blue-500 cursor-pointer hover:scale-95'>
-                Submit
+                {editMode ? 'Edit' : 'Create'}
               </button>
             </div>
           </form>
