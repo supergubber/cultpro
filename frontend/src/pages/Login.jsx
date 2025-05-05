@@ -63,7 +63,7 @@ const Login = () => {
 
             <form
               onSubmit={handleSubmit}
-              className='w-[500px] p-6 rounded-lg space-y-4 '
+              className='w-[400px] p-6 rounded-lg space-y-4 '
             >
               <div>
                 <label
