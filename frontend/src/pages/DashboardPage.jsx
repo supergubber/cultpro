@@ -4,7 +4,9 @@ import Avatar from '@mui/material/Avatar'
 import { useAuthStore } from '../store/authStore'
 import { Grid } from '@mui/material'
 import { IoMdClose } from 'react-icons/io'
-import { FaRegPlusSquare } from 'react-icons/fa'
+
+import { VscDiffAdded } from 'react-icons/vsc'
+
 import 'animate.css'
 
 const DashboardPage = () => {
@@ -113,7 +115,7 @@ const DashboardPage = () => {
                 name='search'
                 value={searchData}
                 placeholder='Search'
-                className='border border-black px-3 py-2 rounded-sm text-black'
+                className='border border-gray-400 px-3 py-2 rounded-sm text-black focus:outline-none focus:ring-2 focus:ring-blue-500'
                 onChange={(e) => setSearchData(e.target.value)}
               />
               <Avatar
@@ -124,7 +126,7 @@ const DashboardPage = () => {
                 }${user?.lastName || ''}`}
                 className='shadow-lg shadow-amber-100 cursor-pointer'
               />
-              <FaRegPlusSquare
+              <VscDiffAdded
                 className='cursor-pointer text-3xl'
                 title='Edit'
                 onClick={() => setPopup(!popup)}
@@ -147,9 +149,9 @@ const DashboardPage = () => {
                 lg={4}
                 key={item._id}
                 sx={{ background: 'white', borderRadius: 1 }}
-                className={`shadow-xl`}
+                className={`shadow-sm`}
               >
-                <div className='p-4 rounded-lg shadow-sm hover:shadow-lg transition-shadow h-full animate__animated hover:animate__bounce'>
+                <div className='p-4 rounded-lg hover:shadow-xl transition-shadow h-full animate__animated hover:animate__bounce'>
                   <h2 className='text-lg font-semibold text-gray-800'>
                     {item.title}
                   </h2>

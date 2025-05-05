@@ -3,6 +3,9 @@ const User = require('../models/user')
 const bcryptjs = require('bcryptjs')
 
 const otpTemplate = require('../mail/templates/emailVerificationTemplate')
+const {
+  signupSuccessEmail,
+} = require('../mail/templates/emailVerificationTemplate')
 
 const {
   generateTokenAndSetCookie,
@@ -42,11 +45,8 @@ exports.signup = async (req, res) => {
     await user.save()
 
     generateTokenAndSetCookie(res, user._id)
-    await mailSender(
-      user.email,
-      verificationToken,
-      'your authentication successfully'
-    )
+    const emailContent = otpTemplate(verificationToken)
+    await mailSender(user.email, verificationToken, emailContent)
 
     res.status(201).json({
       success: true,
@@ -77,8 +77,7 @@ exports.verifyEmail = async (req, res) => {
     user.verificationTokenExpiresAt = undefined
 
     await user.save()
-
-    await mailSender(user.email, user.name, otpTemplate)
+    // await mailSender(user.email, 'Your OTP Verification', signupSuccessEmail)
     res.status(200).json({
       success: true,
       message: 'Email verified successfully',
