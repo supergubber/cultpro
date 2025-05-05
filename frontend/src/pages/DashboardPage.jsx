@@ -187,49 +187,51 @@ const DashboardPage = () => {
           className='absolute right-10 top-10 text-4xl cursor-pointer text-white'
           onClick={modalClose}
         />
-        <div className='bg-gray-100 shadow-2xl shadow-black p-4 w-4/12 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-          <p className='text-4xl font-semibold tracking-tight text-gray-800 mb-6 capitalize'>
-            {editMode ? 'Edit' : 'Create'}
-          </p>
-          <hr />
-          <form
-            className='flex flex-col gap-6 items-left flex-wrap mt-6'
-            onSubmit={handleSubmit}
-          >
-            <div className='flex flex-col gap-2 w-full'>
-              <label htmlFor='title' className='font-bold text-xl'>
-                Title<sup>*</sup>
-              </label>
-              <input
-                type='text'
-                id='title'
-                name='title'
-                placeholder='Title'
-                className='border border-gray-400 px-3 py-2 rounded-sm text-black'
-                value={dataValue.title}
-                onChange={handleChange}
-              />
-            </div>
-            <div className='flex flex-col gap-2 w-full'>
-              <label htmlFor='description' className='font-bold text-xl'>
-                Description<sup>*</sup>
-              </label>
-              <input
-                type='text'
-                id='description'
-                name='description'
-                placeholder='Description'
-                value={dataValue.description}
-                className='border border-gray-400 px-3 py-2 rounded-sm text-black'
-                onChange={handleChange}
-              />
-            </div>
-            <div className=''>
-              <button className='px-3 py-2 font-bold text-white rounded-lg shadow-lg bg-blue-500 cursor-pointer hover:scale-95'>
-                {editMode ? 'Edit' : 'Create'}
-              </button>
-            </div>
-          </form>
+        <div className='bg-gray-100 shadow-2xl shadow-black p-4 w-[85%] md:w-[33%] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+          <div className='w-[100%]'>
+            <p className='text-4xl font-semibold tracking-tight text-gray-800 mb-6 capitalize'>
+              {editMode ? 'Edit' : 'Create'}
+            </p>
+            <hr />
+            <form
+              className='flex flex-col gap-6 items-left flex-wrap mt-6'
+              onSubmit={handleSubmit}
+            >
+              <div className='flex flex-col gap-2 w-full'>
+                <label htmlFor='title' className='font-bold text-xl'>
+                  Title<sup>*</sup>
+                </label>
+                <input
+                  type='text'
+                  id='title'
+                  name='title'
+                  placeholder='Title'
+                  className='border border-gray-400 px-3 py-2 rounded-sm text-black'
+                  value={dataValue.title}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className='flex flex-col gap-2 w-full'>
+                <label htmlFor='description' className='font-bold text-xl'>
+                  Description<sup>*</sup>
+                </label>
+                <input
+                  type='text'
+                  id='description'
+                  name='description'
+                  placeholder='Description'
+                  value={dataValue.description}
+                  className='border border-gray-400 px-3 py-2 rounded-sm text-black'
+                  onChange={handleChange}
+                />
+              </div>
+              <div className=''>
+                <button className='px-3 py-2 font-bold text-white rounded-lg shadow-lg bg-blue-500 cursor-pointer hover:scale-95'>
+                  {editMode ? 'Edit' : 'Create'}
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
